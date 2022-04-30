@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  app:
+    build: .docker/emtrypoint.sh
+    container_name: prismaapi-app
+    ports:
+      - "3000:3000"
+    volumes:
+    
+
