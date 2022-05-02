@@ -7,6 +7,7 @@ services:
     container_name: prismaapi-app
     ports:
       - "3000:3000"
+      - "5555:5555"
     volumes:
       - .:/home/node/app
       - ./src/node_modules:/usr/app/node_modules
@@ -19,7 +20,7 @@ services:
     restart: always
     tty: true
     ports:
-      - "7894:7894"
+      - "5432:5432"
     volumes:
       - .docker/dbdata:/var/lib/postgresql/data
     environment:
