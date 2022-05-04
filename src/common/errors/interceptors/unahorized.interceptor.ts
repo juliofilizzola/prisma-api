@@ -13,16 +13,15 @@ import { UnauthorizedError } from '../types/UnauthorizedError';
 @Injectable()
 export class UnauthorizedInterceptor implements NestInterceptor {
   intercept(
-    context: ExecutionContext,
+    _context: ExecutionContext,
     next: CallHandler<any>,
   ): Observable<any> {
     return next.handle().pipe(
       catchError((error: any) => {
         if (error instanceof UnauthorizedError) {
           throw new UnauthorizedException(error.message);
-        } else {
-          throw error;
         }
+        throw error;
       }),
     );
   }
