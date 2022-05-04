@@ -3,7 +3,7 @@ import {
   ExecutionContext,
   Injectable,
   NestInterceptor,
-  UnauthorizedException,
+  NotFoundException,
 } from '@nestjs/common';
 
 import { catchError, Observable } from 'rxjs';
@@ -19,7 +19,7 @@ export class NotFoundErrorInterceptor implements NestInterceptor {
     return next.handle().pipe(
       catchError((error: any) => {
         if (error instanceof NotFoundError) {
-          throw new UnauthorizedException(error.message);
+          throw new NotFoundException(error.message);
         }
         throw error;
       }),
