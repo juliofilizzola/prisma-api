@@ -1,3 +1,4 @@
+import { DatabaseInterceptor } from '@common/errors/interceptors/database.interceptor';
 import { HttpExceptionFilter } from '@common/filter/http-exception.filter';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
@@ -12,7 +13,8 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  app.useGlobalFilters(new HttpExceptionFilter());
+  // app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalInterceptors(new DatabaseInterceptor());
   await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
